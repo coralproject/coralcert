@@ -11,7 +11,7 @@ import (
 func main() {
 
 	bitSize := flag.Int("bit_size", 2048, "bit size of generated keys if using -type=rsa, minimum 1024")
-	curve := flag.String("curve", "P256", "elliptic curve to use if using -type=ecdsa, see https://golang.org/pkg/crypto/elliptic/#Curve for available curve types")
+	curve := flag.String("curve", "P256", "elliptic curve to use if using -type=ecdsa, supports P256 P384 or P521 curves")
 	secretType := flag.String("type", "ecdsa", "type of secret to generate, either ecdsa or rsa")
 
 	flag.Parse()
@@ -38,8 +38,6 @@ func main() {
 	case "ecdsa":
 		var eCurve elliptic.Curve
 		switch *curve {
-		case "P224":
-			eCurve = elliptic.P224()
 		case "P256":
 			eCurve = elliptic.P256()
 		case "P384":
@@ -47,7 +45,7 @@ func main() {
 		case "P521":
 			eCurve = elliptic.P521()
 		default:
-			fmt.Fprintf(os.Stderr, "-curve=%s not supported, please see https://golang.org/pkg/crypto/elliptic/#Curve for available curve types\n", *curve)
+			fmt.Fprintf(os.Stderr, "-curve=%s not supported, supports P256 P384 or P521 curves\n", *curve)
 			os.Exit(1)
 		}
 

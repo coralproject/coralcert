@@ -23,7 +23,7 @@ Usage of coralcert:
   -bit_size int
     	bit size of generated keys if using -type=rsa, minimum 1024 (default 2048)
   -curve string
-    	elliptic curve to use if using -type=ecdsa, see https://golang.org/pkg/crypto/elliptic/#Curve for available curve types (default "P256")
+    	elliptic curve to use if using -type=ecdsa, supports P256 P384 or P521 curves (default "P256")
   -type string
     	type of secret to generate, either ecdsa or rsa (default "ecdsa")
 ```
