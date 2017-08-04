@@ -3,9 +3,15 @@
 This package provides a command line utiltiy, `coralcert`, to assist with certificate
 generation for use with the Coral Project's [Talk](https://github.com/coralproject/talk) product.
 
+## Installation
+
+You can install from source by running:
+
 ```bash
 go get github.com/coralproject/coralcert
 ```
+
+Or by visiting the [Releases](https://github.com/coralproject/coralcert/releases/latest) page for binary builds.
 
 ## Usage
 
