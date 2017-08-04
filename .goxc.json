@@ -3,6 +3,8 @@
 		"default",
 		"publish-github"
 	],
+	"Arch": "amd64",
+	"Os": "linux darwin",
 	"PackageVersion": "0.0.1",
 	"TaskSettings": {
 		"publish-github": {
