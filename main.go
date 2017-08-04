@@ -6,6 +6,8 @@ import (
 	"flag"
 	"fmt"
 	"os"
+
+	"github.com/coralproject/coralcert/secret"
 )
 
 func main() {
@@ -24,7 +26,7 @@ func main() {
 		}
 
 		// Generate a secret.
-		s, err := GenerateRSASecret(*bitSize)
+		s, err := secret.NewRSA(*bitSize)
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "couldn't generate the rsa secret: %s\n", err.Error())
 			os.Exit(1)
@@ -49,7 +51,7 @@ func main() {
 			os.Exit(1)
 		}
 
-		s, err := GenerateECDSASecret(eCurve)
+		s, err := secret.NewECDSA(eCurve)
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "couldn't generate the ecdsa secret: %s\n", err.Error())
 			os.Exit(1)

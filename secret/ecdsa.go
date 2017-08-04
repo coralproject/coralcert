@@ -1,38 +1,39 @@
-package main
+package secret
 
 import (
 	"crypto"
+	"crypto/ecdsa"
+	"crypto/elliptic"
 	"crypto/rand"
-	"crypto/rsa"
 	"crypto/x509"
 	"encoding/pem"
 )
 
-// GenerateRSASecret will generate a RSA key using the crypto/rand.Reader source
+// NewECDSA will generate a ECDSA key using the crypto/rand.Reader source
 // with a length of bitSize.
-func GenerateRSASecret(bitSize int) (*RSASecret, error) {
-	private, err := rsa.GenerateKey(rand.Reader, bitSize)
+func NewECDSA(curve elliptic.Curve) (*ECDSA, error) {
+	private, err := ecdsa.GenerateKey(curve, rand.Reader)
 	if err != nil {
 		return nil, err
 	}
 
-	return &RSASecret{
+	return &ECDSA{
 		Private: private,
 		Public:  private.Public(),
 	}, nil
 }
 
-// RSASecret provides capabilities around marshaling a
-// RSA key pair for the Coral Project's Talk.
-type RSASecret struct {
-	Private *rsa.PrivateKey
+// ECDSA provides capabilities around marshaling a
+// ECDSA key pair for the Coral Project's Talk.
+type ECDSA struct {
+	Private *ecdsa.PrivateKey
 	Public  crypto.PublicKey
 }
 
 // MarshalJSON implements the MarshalJSON interface.
-func (s RSASecret) MarshalJSON() ([]byte, error) {
+func (s ECDSA) MarshalJSON() ([]byte, error) {
 
-	// Generate the public key from the private RSA key.
+	// Generate the public key from the private ECDSA key.
 	var publicKey crypto.PublicKey
 	if s.Public != nil {
 		publicKey = s.Public
@@ -48,7 +49,7 @@ func (s RSASecret) MarshalJSON() ([]byte, error) {
 
 	// Prepare the DER-encoded PKIX encoded form in a PEM block.
 	publicKeyPEM := &pem.Block{
-		Type:  "RSA PUBLIC KEY",
+		Type:  "ECDSA PUBLIC KEY",
 		Bytes: publicKeyDER,
 	}
 
@@ -58,15 +59,22 @@ func (s RSASecret) MarshalJSON() ([]byte, error) {
 		return nil, err
 	}
 
-	// Prepare the ASN.1 DER encoded form in a PEM block.
+	// Prepare the ASN.1 DER encoded form in a PEM block if it exists.
 	var privateKeyPEM *pem.Block
 	if s.Private != nil {
+
+		// Encode the public key to a DER-encoded ASN.1 format.
+		privateKeyDER, err := x509.MarshalECPrivateKey(s.Private)
+		if err != nil {
+			return nil, err
+		}
+
 		privateKeyPEM = &pem.Block{
-			Type:  "RSA PRIVATE KEY",
-			Bytes: x509.MarshalPKCS1PrivateKey(s.Private),
+			Type:  "ECDSA PRIVATE KEY",
+			Bytes: privateKeyDER,
 		}
 	}
 
 	// Marshal using the Secret marshaler.
-	return MarshalSecret(keyID, publicKeyPEM, privateKeyPEM)
+	return Marshal(keyID, publicKeyPEM, privateKeyPEM)
 }

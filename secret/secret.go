@@ -1,4 +1,4 @@
-package main
+package secret
 
 import (
 	"crypto/sha1"
@@ -45,8 +45,8 @@ func MarshalPEMBlock(block *pem.Block) string {
 	return strings.Replace(string(encodedPEM), "\n", "\\n", -1)
 }
 
-// MarshalSecret implements the MarshalJSON interface for secrets.
-func MarshalSecret(keyID string, pub, pvt *pem.Block) ([]byte, error) {
+// Marshal implements the MarshalJSON interface for secrets.
+func Marshal(keyID string, pub, pvt *pem.Block) ([]byte, error) {
 
 	// Error if the key id was not found.
 	if keyID == "" {
