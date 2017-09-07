@@ -13,6 +13,12 @@ go get github.com/coralproject/coralcert
 
 Or by visiting the [Releases](https://github.com/coralproject/coralcert/releases/latest) page for binary builds.
 
+### Installation Via Homebrew
+
+```
+brew install coralproject/stable/coralcert
+```
+
 ## Usage
 
 This utility when ran will output the JSON encoded certificates in a form that is compatible
