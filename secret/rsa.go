@@ -48,7 +48,7 @@ func (s RSA) MarshalJSON() ([]byte, error) {
 
 	// Prepare the DER-encoded PKIX encoded form in a PEM block.
 	publicKeyPEM := &pem.Block{
-		Type:  "RSA PUBLIC KEY",
+		Type:  "PUBLIC KEY",
 		Bytes: publicKeyDER,
 	}
 

@@ -38,7 +38,7 @@ Usage of coralcert:
 
 ```bash
 $ coralcert -type=ecdsa -curve=P384
-{"kid":"0JtIaawv","private":"-----BEGIN ECDSA PRIVATE KEY-----\\nMIGkAgEBBDBYIaCeQSMwciah85K9KzQDj/9JdJDRdy4hxMfmLnfow9ZugjFCD1Lw\\naZgCcjWAJhygBwYFK4EEACKhZANiAASyuTtHHTJ6dFO+9ke/xVtzXh6LAfjJMQII\\nvb3qCf7wzV/ik6Ev92T+IXOk6Qro08fcDKjPlo6fM7quMvDdUxo5rNJRVAA+0NDz\\nSSOoLwJBpdD76JFn2p7b5HwXH0ZTLRE=\\n-----END ECDSA PRIVATE KEY-----\\n","public":"-----BEGIN ECDSA PUBLIC KEY-----\\nMHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEsrk7Rx0yenRTvvZHv8Vbc14eiwH4yTEC\\nCL296gn+8M1f4pOhL/dk/iFzpOkK6NPH3Ayoz5aOnzO6rjLw3VMaOazSUVQAPtDQ\\n80kjqC8CQaXQ++iRZ9qe2+R8Fx9GUy0R\\n-----END ECDSA PUBLIC KEY-----\\n"}
+{"kid":"jhCOJ+3U","private":"-----BEGIN EC PRIVATE KEY-----\\nMIGkAgEBBDAEiASgHtSHyWMQUH2lIFgYwwJiuOdlG2cRbPyueiV6R1+vaZu24Jo+\\nUPsF3MdrbDWgBwYFK4EEACKhZANiAATH+EextZhmUr8m3P1yEdn7+Y76vOrvIL5n\\nZs8pcua60bMMrp3oEu/Tvk8C/+ULBgrRFGPnKtDLcXRQ767GUoafITW44K7D22pd\\nmijHUrUw7jjKlsYnfGCvSjCyri9GmSQ=\\n-----END EC PRIVATE KEY-----\\n","public":"-----BEGIN PUBLIC KEY-----\\nMHYwEAYHKoZIzj0CAQYFK4EEACIDYgAEx/hHsbWYZlK/Jtz9chHZ+/mO+rzq7yC+\\nZ2bPKXLmutGzDK6d6BLv075PAv/lCwYK0RRj5yrQy3F0UO+uxlKGnyE1uOCuw9tq\\nXZoox1K1MO44ypbGJ3xgr0owsq4vRpkk\\n-----END PUBLIC KEY-----\\n"}
 ```
 
 ## License

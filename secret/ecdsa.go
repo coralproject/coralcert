@@ -49,7 +49,7 @@ func (s ECDSA) MarshalJSON() ([]byte, error) {
 
 	// Prepare the DER-encoded PKIX encoded form in a PEM block.
 	publicKeyPEM := &pem.Block{
-		Type:  "ECDSA PUBLIC KEY",
+		Type:  "PUBLIC KEY",
 		Bytes: publicKeyDER,
 	}
 
@@ -70,7 +70,7 @@ func (s ECDSA) MarshalJSON() ([]byte, error) {
 		}
 
 		privateKeyPEM = &pem.Block{
-			Type:  "ECDSA PRIVATE KEY",
+			Type:  "EC PRIVATE KEY",
 			Bytes: privateKeyDER,
 		}
 	}
