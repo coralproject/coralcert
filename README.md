@@ -1,5 +1,7 @@
 # coralcert
 
+[![Build Status](https://travis-ci.org/coralproject/coralcert.svg?branch=master)](https://travis-ci.org/coralproject/coralcert)
+
 This package provides a command line utiltiy, `coralcert`, to assist with certificate
 generation for use with the Coral Project's [Talk](https://github.com/coralproject/talk) product.
 
