@@ -1,0 +1,17 @@
+[linters]
+  enable-all = true
+  disable = [
+    "lll",
+  ]
+
+[issues]
+    exclude-use-default = true
+
+    # The following rules are added to exclude the use of sha1 for the purposes
+    # of generating an ID.
+    [[issues.exclude-rules]]
+        path = "secret/secret.go"
+        text = "Blacklisted import `crypto/sha1`: weak cryptographic primitive"
+    [[issues.exclude-rules]]
+        path = "secret/secret.go"
+        text = "Use of weak cryptographic primitive"

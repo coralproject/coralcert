@@ -31,7 +31,6 @@ type RSA struct {
 
 // MarshalJSON implements the MarshalJSON interface.
 func (s RSA) MarshalJSON() ([]byte, error) {
-
 	// Generate the public key from the private RSA key.
 	var publicKey crypto.PublicKey
 	if s.Public != nil {

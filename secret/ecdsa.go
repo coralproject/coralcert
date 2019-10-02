@@ -32,7 +32,6 @@ type ECDSA struct {
 
 // MarshalJSON implements the MarshalJSON interface.
 func (s ECDSA) MarshalJSON() ([]byte, error) {
-
 	// Generate the public key from the private ECDSA key.
 	var publicKey crypto.PublicKey
 	if s.Public != nil {
@@ -62,7 +61,6 @@ func (s ECDSA) MarshalJSON() ([]byte, error) {
 	// Prepare the ASN.1 DER encoded form in a PEM block if it exists.
 	var privateKeyPEM *pem.Block
 	if s.Private != nil {
-
 		// Encode the public key to a DER-encoded ASN.1 format.
 		privateKeyDER, err := x509.MarshalECPrivateKey(s.Private)
 		if err != nil {

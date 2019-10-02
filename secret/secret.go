@@ -5,8 +5,9 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"encoding/pem"
-	"errors"
 	"strings"
+
+	"github.com/pkg/errors"
 )
 
 // keyIDLength represents the length of characters a keyID is
@@ -17,10 +18,11 @@ const keyIDLength = 8
 // and use the first keyIDLength characters as the key id (kid) to
 // return.
 func GenerateKeyID(publicKeyDER []byte) (string, error) {
-
 	// Use a SHA1 hash to create a unique identifier for the public key.
 	h := sha1.New()
-	h.Write(publicKeyDER)
+	if _, err := h.Write(publicKeyDER); err != nil {
+		return "", errors.Wrap(err, "could not write the public key to the sha1")
+	}
 
 	// Encode the SHA1 sum using a base64 encoding.
 	hash := base64.StdEncoding.EncodeToString(h.Sum(nil))
@@ -36,7 +38,6 @@ func GenerateKeyID(publicKeyDER []byte) (string, error) {
 // MarshalPEMBlock will marshal the PEM block in a way that will
 // allow marshaling in a JSON payload.
 func MarshalPEMBlock(block *pem.Block) string {
-
 	// Encode the block to memory.
 	encodedPEM := pem.EncodeToMemory(block)
 
@@ -47,7 +48,6 @@ func MarshalPEMBlock(block *pem.Block) string {
 
 // Marshal implements the MarshalJSON interface for secrets.
 func Marshal(keyID string, pub, pvt *pem.Block) ([]byte, error) {
-
 	// Error if the key id was not found.
 	if keyID == "" {
 		return nil, errors.New("cannot marshal a secret without a key id")
